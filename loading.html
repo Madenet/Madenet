@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Madenet</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(120deg, #008cff9d, #00aa7798);
+            background-size: 300% 300%;
+            animation: gradientBG 6s infinite alternate;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: left; }
+            100% { background-position: right; }
+        }
+
+        .container {
+            font-size: 2.5rem;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 28px;
+            background-color: #2f089b;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .fade {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Loading Spinner */
+        .loader {
+            margin-top: 20px;
+            width: 50px;
+            height: 50px;
+            border: 6px solid rgba(255, 255, 255, 0.2);
+            border-top: 6px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span id="text"></span><span class="cursor"></span>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loader"></div>
+
+    <script>
+        const messages = [
+            "Welcome to Madenet",  
+            "Craft, Connect, Conquer"
+        ];
+
+        let messageIndex = 0;
+        let charIndex = 0;
+        const textElement = document.getElementById("text");
+
+        function typeWriter() {
+            if (charIndex < messages[messageIndex].length) {
+                textElement.innerHTML += messages[messageIndex].charAt(charIndex);
+                charIndex++;
+
+                // Haptic feedback when key words appear
+                if (textElement.innerHTML.includes("Madenet") || textElement.innerHTML.includes("Amazing")) {
+                    if (navigator.vibrate) navigator.vibrate(100);
+                }
+
+                setTimeout(typeWriter, 150);
+            } else {
+                setTimeout(eraseText, 1500); // Wait before erasing
+            }
+        }
+
+        function eraseText() {
+            if (charIndex > 0) {
+                textElement.innerHTML = messages[messageIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(eraseText, 80);
+            } else {
+                messageIndex = (messageIndex + 1) % messages.length;
+                
+                // After showing all messages once, redirect to the main page
+                if (messageIndex === 0 && sessionStorage.getItem('loadingShown')) {
+                    window.location.href = "index.html";
+                } else {
+                    setTimeout(typeWriter, 500);
+                    
+                    // Set flag after first cycle
+                    if (messageIndex === 0) {
+                        sessionStorage.setItem('loadingShown', 'true');
+                    }
+                }
+            }
+        }
+
+        // Skip loading screen if already shown in this session
+        if (sessionStorage.getItem('loadingShown')) {
+            window.location.href = "index.html";
+        } else {
+            // Start animation
+            window.onload = typeWriter;
+            
+            // Add manual skip option
+            document.addEventListener('click', function() {
+                sessionStorage.setItem('loadingShown', 'true');
+                window.location.href = "index.html";
+            });
+            
+            // Also redirect after 15 seconds in case of any issues
+            setTimeout(function() {
+                window.location.href = "index.html";
+            }, 15000);
+        }
+    </script>
+</body>
+</html>
