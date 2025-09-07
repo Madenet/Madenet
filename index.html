@@ -93,56 +93,55 @@
         📱 <a href="tel:+27725618061">+27 72 561 8061</a>
     </div>
 
-    <script>
-        const messages = [
-            "Welcome to Madenet",  
-            "Craft, Connect, Conquer"
-        ];
+<script>
+    const messages = [
+        "Welcome to Madenet",  
+        "Craft, Connect, Conquer"
+    ];
 
-        let messageIndex = 0;
-        let charIndex = 0;
-        const textElement = document.getElementById("text");
+    let messageIndex = 0;
+    let charIndex = 0;
+    const textElement = document.getElementById("text");
 
-        function typeWriter() {
-            if (charIndex < messages[messageIndex].length) {
-                textElement.innerHTML += messages[messageIndex].charAt(charIndex);
-                charIndex++;
+    function typeWriter() {
+        if (charIndex < messages[messageIndex].length) {
+            textElement.innerHTML += messages[messageIndex].charAt(charIndex);
+            charIndex++;
 
-                // Haptic feedback on certain keywords
-                if (textElement.innerHTML.includes("Madenet") || textElement.innerHTML.includes("Amazing")) {
-                    if (navigator.vibrate) navigator.vibrate(100);
-                }
+            // 💡 Haptic feedback (works only on supported mobiles)
+            if (navigator.vibrate) navigator.vibrate(30);
 
-                setTimeout(typeWriter, 150);
-            } else {
-                setTimeout(eraseText, 1500); // Wait before erasing
-            }
+            setTimeout(typeWriter, 150);
+        } else {
+            setTimeout(eraseText, 1500); // Wait before erasing
         }
+    }
 
-        function eraseText() {
-            if (charIndex > 0) {
-                textElement.innerHTML = messages[messageIndex].substring(0, charIndex - 1);
-                charIndex--;
-                setTimeout(eraseText, 80);
+    function eraseText() {
+        if (charIndex > 0) {
+            textElement.innerHTML = messages[messageIndex].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(eraseText, 80);
+        } else {
+            messageIndex = (messageIndex + 1) % messages.length;
+            
+            // After showing all messages once, redirect to the main page
+            if (messageIndex === 0 && sessionStorage.getItem('loadingShown')) {
+                window.location.href = "index.html";
             } else {
-                messageIndex = (messageIndex + 1) % messages.length;
+                setTimeout(typeWriter, 500);
                 
-                // After showing all messages once, redirect to the main page
-                if (messageIndex === 0 && sessionStorage.getItem('loadingShown')) {
-                    window.location.href = "index.html";
-                } else {
-                    setTimeout(typeWriter, 500);
-                    
-                    // Set flag after first cycle
-                    if (messageIndex === 0) {
-                        sessionStorage.setItem('loadingShown', 'true');
-                    }
+                // Set flag after first cycle
+                if (messageIndex === 0) {
+                    sessionStorage.setItem('loadingShown', 'true');
                 }
             }
         }
+    }
 
-        // Start immediately when DOM is ready
-        document.addEventListener("DOMContentLoaded", typeWriter);
-    </script>
+    // Start immediately when DOM is ready
+    document.addEventListener("DOMContentLoaded", typeWriter);
+</script>
+
 </body>
 </html>
