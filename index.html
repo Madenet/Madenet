@@ -3,463 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Madenet - Software Development Company</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="timeline-styles.css">
-    <link rel="stylesheet" href="search-styles.css">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        // Check if this is the first visit
-        if (!sessionStorage.getItem('loadingShown') && !window.location.href.includes('loading.html')) {
-            window.location.href = 'loading.html';
+    <title>Welcome to Madenet</title>
+    <style>
+        body {
+            font-family: 'Courier New', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(120deg, #008cff9d, #00aa7798);
+            background-size: 300% 300%;
+            animation: gradientBG 6s infinite alternate;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
         }
-    </script>
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .container {
+            font-size: 2.5rem;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1em;
+            background-color: #2f089b;
+            vertical-align: bottom;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Loading Spinner */
+        .loader {
+            margin-top: 20px;
+            width: 50px;
+            height: 50px;
+            border: 6px solid rgba(255, 255, 255, 0.2);
+            border-top: 6px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Maintenance Notice */
+        .maintenance {
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .maintenance span {
+            display: block;
+            font-size: 4rem;
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold text-indigo-600">Madenet</span>
-          </Link>
+    <div class="container">
+        <span id="text"></span><span class="cursor"></span>
+    </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link
-              href="/"
-              className={`text-sm font-medium transition-colors hover:text-indigo-600 ${isActive("/") ? "text-indigo-600" : "text-gray-600"}`}
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              className={`text-sm font-medium transition-colors hover:text-indigo-600 ${isActive("/about") ? "text-indigo-600" : "text-gray-600"}`}
-            >
-              About
-            </Link>
-            <Link
-              href="/services"
-              className={`text-sm font-medium transition-colors hover:text-indigo-600 ${isActive("/services") ? "text-indigo-600" : "text-gray-600"}`}
-            >
-              Services
-            </Link>
-            <Link
-              href="/growth"
-              className={`text-sm font-medium transition-colors hover:text-indigo-600 ${isActive("/growth") ? "text-indigo-600" : "text-gray-600"}`}
-            >
-              Growth
-            </Link>
-            <Button asChild size="sm">
-              <Link href="/contact">Contact Us</Link>
-            </Button>
-          </nav>
+    <!-- Loading Spinner -->
+    <div class="loader"></div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 rounded-md text-gray-600 hover:text-indigo-600 hover:bg-gray-100"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </div>
+    <!-- Maintenance Notice -->
+    <div class="maintenance">
+        <span>🛠️</span>
+        Website is under seasonal maintenance
+    </div>
 
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100">
-          <div className="container mx-auto px-4 py-4 space-y-4">
-            <Link
-              href="/"
-              className={`block py-2 text-base font-medium ${isActive("/") ? "text-indigo-600" : "text-gray-600"}`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              className={`block py-2 text-base font-medium ${isActive("/about") ? "text-indigo-600" : "text-gray-600"}`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              About
-            </Link>
-            <Link
-              href="/services"
-              className={`block py-2 text-base font-medium ${isActive("/services") ? "text-indigo-600" : "text-gray-600"}`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Services
-            </Link>
-            <Link
-              href="/growth"
-              className={`block py-2 text-base font-medium ${isActive("/growth") ? "text-indigo-600" : "text-gray-600"}`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Growth
-            </Link>
-            <Button asChild className="w-full">
-              <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
-                Contact Us
-              </Link>
-            </Button>
-          </div>
-        </div>
-      )}
-    </header>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Innovative Software Solutions for Your Business</h1>
-                <p>We create custom software that drives growth and transforms businesses.</p>
-                <div class="hero-buttons">
-                    <a href="services.html" class="btn btn-primary">Our Services</a>
-                    <a href="contact.html" class="btn btn-outline">Get in Touch</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="images/hero-image.png" alt="Madenet Software Solutions">
-            </div>
-        </div>
-    </section>
-    
-    <!-- Services Section -->
-    <section id="services" class="services section-padding">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Services</h2>
-                <p>We offer a comprehensive range of software development services</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Custom Software Development</h3>
-                    <p>Tailored solutions designed to address your specific business challenges and requirements.</p>
-                    <a href="services.html#custom-development" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
+    <script>
+        const messages = [
+            "Welcome to Madenet",  
+            "Craft, Connect, Conquer"
+        ];
+
+        let messageIndex = 0;
+        let charIndex = 0;
+        const textElement = document.getElementById("text");
+
+        function typeWriter() {
+            if (charIndex < messages[messageIndex].length) {
+                textElement.innerHTML += messages[messageIndex].charAt(charIndex);
+                charIndex++;
+
+                // Haptic feedback on certain keywords
+                if (textElement.innerHTML.includes("Madenet") || textElement.innerHTML.includes("Amazing")) {
+                    if (navigator.vibrate) navigator.vibrate(100);
+                }
+
+                setTimeout(typeWriter, 150);
+            } else {
+                setTimeout(eraseText, 1500); // Wait before erasing
+            }
+        }
+
+        function eraseText() {
+            if (charIndex > 0) {
+                textElement.innerHTML = messages[messageIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(eraseText, 80);
+            } else {
+                messageIndex = (messageIndex + 1) % messages.length;
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Web Application Development</h3>
-                    <p>Powerful, responsive web applications that work seamlessly across all devices.</p>
-                    <a href="services.html#web-development" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile App Development</h3>
-                    <p>Native and cross-platform mobile applications for iOS and Android.</p>
-                    <a href="services.html#mobile-development" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>UI/UX Design</h3>
-                    <p>Intuitive, engaging user experiences that keep your customers coming back.</p>
-                    <a href="services.html#ui-ux-design" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- About Section -->
-    <section id="about" class="about section-padding bg-light">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-content">
-                    <div class="section-header text-left">
-                        <h2>About Madenet</h2>
-                        <p>Transforming ideas into powerful software solutions</p>
-                    </div>
+                // After showing all messages once, redirect to the main page
+                if (messageIndex === 0 && sessionStorage.getItem('loadingShown')) {
+                    window.location.href = "index.html";
+                } else {
+                    setTimeout(typeWriter, 500);
                     
-                    <p>Madenet is a forward-thinking software development company dedicated to helping businesses leverage technology to achieve their goals. Our team of experienced developers, designers, and strategists work together to deliver exceptional software solutions.</p>
-                    
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <span class="stat-number counter" data-target="50">0</span>
-                            <span class="stat-label">Projects Completed</span>
-                        </div>
-                        
-                        <div class="stat-item">
-                            <span class="stat-number counter" data-target="30">0</span>
-                            <span class="stat-label">Happy Clients</span>
-                        </div>
-                        
-                        <div class="stat-item">
-                            <span class="stat-number counter" data-target="15">0</span>
-                            <span class="stat-label">Team Members</span>
-                        </div>
-                    </div>
-                    
-                    <a href="about.html" class="btn btn-primary">Learn More About Us</a>
-                </div>
-                
-                <div class="about-image">
-                    <img src="images/about-image.png" alt="About Madenet">
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Growth Strategy Timeline -->
-    <section id="growth" class="timeline section-padding bg-light">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Growth Journey</h2>
-                <p>From foundation to industry leadership, we have a clear vision for growth.</p>
-            </div>
-            
-            <div class="timeline-container">
-                <div class="timeline-item">
-                    <div class="timeline-content enhanced">
-                        <h3>2025</h3>
-                        <h4>Foundation & Initial Market Entry</h4>
-                        <div class="timeline-details">
-                            <p>Finalize and launch the Macrosecond Trading Platform & Circuit Management System.</p>
-                            <p>Target small businesses, traders, and educational institutions for pilot projects.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-icon enhanced">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content enhanced">
-                        <h3>2026</h3>
-                        <h4>Scaling & Customer Growth</h4>
-                        <div class="timeline-details">
-                            <p>Improve user retention and onboard 5,000+ paid users.</p>
-                            <p>Enhance platform features with AI-powered analytics for trading & education sectors.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-icon enhanced">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content enhanced">
-                        <h3>2027-2029</h3>
-                        <h4>National Expansion to Global Leadership</h4>
-                        <div class="timeline-details">
-                            <p>Expand Madenet's presence nationally and internationally, with advanced AI integration.</p>
-                            <p>Achieve 8-figure revenue with a self-sustaining ecosystem and potential IPO or acquisition opportunities.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-icon enhanced">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center">
-                <a href="growth.html" class="btn btn-primary">View Full Growth Plan</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Testimonials Section -->
-    <section class="testimonials section-padding">
-        <div class="container">
-            <div class="section-header">
-                <h2>What Our Clients Say</h2>
-                <p>Hear from businesses that have partnered with us</p>
-            </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"Madenet transformed our business with a custom software solution that streamlined our operations and increased our productivity by 40%."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="images/client-1.jpg" alt="John Smith">
-                        <div class="author-info">
-                            <h4>John Smith</h4>
-                            <p>CEO, TechCorp</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"The mobile app developed by Madenet has received outstanding feedback from our users. Their attention to detail and focus on user experience is exceptional."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="images/client-2.jpg" alt="Sarah Johnson">
-                        <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>Product Manager, AppWorks</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"Working with Madenet was a seamless experience. They delivered our project on time and within budget, and the quality of their work exceeded our expectations."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="images/client-3.jpg" alt="Michael Brown">
-                        <div class="author-info">
-                            <h4>Michael Brown</h4>
-                            <p>CTO, InnovateCo</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- CTA Section -->
-    <section class="cta section-padding bg-primary">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Transform Your Business?</h2>
-                <p>Let's discuss how our software solutions can help you achieve your goals.</p>
-                <a href="contact.html" class="btn btn-light">Get Started</a>
-            </div>
-        </div>
-    </section>
-    
-    <footer className="bg-gray-900 text-white">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-xl font-bold mb-4">Madenet</h3>
-            <p className="text-gray-400 mb-4">Innovative technology solutions that solve real-world problems.</p>
-            <p className="text-gray-400 text-sm">
-              © 2024 Madenet (Pty) Ltd. All Rights Reserved.
-              <br />
-              Reg no. 2024/416536/07
-            </p>
-          </div>
+                    // Set flag after first cycle
+                    if (messageIndex === 0) {
+                        sessionStorage.setItem('loadingShown', 'true');
+                    }
+                }
+            }
+        }
 
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-gray-400 hover:text-white transition-colors">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/growth" className="text-gray-400 hover:text-white transition-colors">
-                  Growth & Investment
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/services#platform" className="text-gray-400 hover:text-white transition-colors">
-                  Platform Development
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#trading" className="text-gray-400 hover:text-white transition-colors">
-                  Trading Solutions
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#web" className="text-gray-400 hover:text-white transition-colors">
-                  Web Development
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#marketing" className="text-gray-400 hover:text-white transition-colors">
-                  Marketing & Growth
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <address className="not-italic text-gray-400 space-y-2">
-              <p>36 Avonmouth Cr., Summerstrand</p>
-              <p>Port Elizabeth, Eastern Cape</p>
-              <p>South Africa</p>
-              <p className="mt-4">
-                <a href="tel:+27123456789" className="hover:text-white transition-colors">
-                  +27 (0) 123 456 789
-                </a>
-              </p>
-              <p>
-                <a href="mailto:info@madenet.co.za" className="hover:text-white transition-colors">
-                  info@madenet.co.za
-                </a>
-              </p>
-            </address>
-          </div>
-        </div>
-
-        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">Designed and developed by Madenet (Pty) Ltd.</p>
-          <div className="flex space-x-6">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <span className="sr-only">Facebook</span>
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  fillRule="evenodd"
-                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <span className="sr-only">Twitter</span>
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-              </svg>
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <span className="sr-only">LinkedIn</span>
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  fillRule="evenodd"
-                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-    
-    <!-- Scripts -->
-    <script src="include.js"></script>
-    <script src="search-index.js"></script>
-    <script src="search.js"></script>
-    <script src="main.js"></script>
+        // Start immediately when DOM is ready
+        document.addEventListener("DOMContentLoaded", typeWriter);
+    </script>
 </body>
 </html>
