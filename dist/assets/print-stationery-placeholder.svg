@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" role="img" aria-labelledby="title description">
+  <title id="title">Stationery print concept placeholder</title>
+  <desc id="description">Minimal cream stationery cards on a soft blush background, with clear generic print-design wording and no personal images or names.</desc>
+  <defs>
+    <linearGradient id="ground" x2="1" y2="1"><stop stop-color="#eee3e1"/><stop offset="1" stop-color="#ead6d5"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="18" dy="28" stdDeviation="22" flood-color="#49383a" flood-opacity=".16"/></filter>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#ground)"/>
+  <text x="105" y="125" font-family="Arial,Helvetica,sans-serif" font-size="27" font-weight="700" letter-spacing="7" fill="#a25a61">PRINT / STATIONERY</text>
+  <text x="1490" y="125" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" letter-spacing="5" fill="#6c686b">FORMAT STUDY</text>
+  <g filter="url(#shadow)">
+    <rect x="315" y="285" width="1010" height="680" rx="13" fill="#f7f3ed" transform="rotate(-5 820 625)"/>
+    <rect x="345" y="255" width="1010" height="680" rx="13" fill="#fffdf8"/>
+  </g>
+  <rect x="345" y="255" width="15" height="680" fill="#d8b2ae"/>
+  <path d="M425 370H1275" stroke="#d1c8c1" stroke-width="3"/>
+  <circle cx="1190" cy="775" r="75" fill="#eac9c1"/>
+  <path d="M1137 775h106M1190 722v106" stroke="#fffdf8" stroke-width="8" stroke-linecap="round"/>
+  <text x="430" y="345" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="700" letter-spacing="6" fill="#a25a61">DESIGNED TO BE HELD</text>
+  <text x="425" y="575" font-family="Arial,Helvetica,sans-serif" font-size="102" font-weight="700" letter-spacing="-5" fill="#273144">Print for</text>
+  <text x="425" y="685" font-family="Arial,Helvetica,sans-serif" font-size="102" font-weight="700" letter-spacing="-5" fill="#273144">every moment.</text>
+  <text x="430" y="855" font-family="Arial,Helvetica,sans-serif" font-size="29" fill="#657079">A clean placeholder for future stationery work.</text>
+  <text x="105" y="1090" font-family="Arial,Helvetica,sans-serif" font-size="26" fill="#6c686b">No client artwork or personal imagery shown.</text>
+</svg>

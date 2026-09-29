@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Madenet brings ideas to life through UI/UX design, web development, digital marketing, illustration and print. Explore our selected work.">
+  <meta name="theme-color" content="#f8f8f6">
+  <title>Madenet — Ideas made real.</title>
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/madenet-favicon.png?v=12">
+  <link rel="apple-touch-icon" href="assets/madenet-favicon.png?v=12">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css?v=19">
+  <script src="projects.js?v=10" defer></script>
+  <script src="app.js?v=17" defer></script>
+  <script type="module" src="shadergradient.js?v=15"></script>
+</head>
+<body>
+  <svg class="icon-sprite" aria-hidden="true" focusable="false"><symbol id="madenet-burst" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round"><path d="M50 50V9"/><path d="M50 50 85.5 29.5"/><path d="M50 50 85.5 70.5"/><path d="M50 50V91"/><path d="M50 50 14.5 70.5"/><path d="M50 50 14.5 29.5"/></g></symbol></svg>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="hero-shader-gradient site-shader-gradient" id="site-shader-gradient" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><span></span></div>
+  <header class="site-header">
+    <a class="wordmark" href="#" aria-label="Madenet home"><img src="assets/madenet-logo.svg" alt="" width="2000" height="500"></a>
+    <nav aria-label="Main navigation" id="navigation">
+      <a href="#work">Work</a><a href="#services">Services</a><a href="#clients">Collaborations</a><a href="#studio">About</a><a href="#contact">Contact</a>
+      <button class="pill dark magnetic" data-brief>Let’s talk <span class="arrow-icon" aria-hidden="true"></span></button>
+    </nav>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Open menu"><span class="hamburger" aria-hidden="true"><i></i><i></i></span></button>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="eyebrow hero-eyebrow"><span>INDEPENDENT CREATIVE STUDIO</span><span>SOUTH AFRICA · IDEAS WITHOUT LIMITS</span></div>
+      <h1 id="hero-title" aria-label="Ideas made real."><span class="hero-line">Ideas made</span><span class="hero-line second-line"><span>real<span class="orange">.</span></span><span class="asterisk" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#madenet-burst"></use></svg></span></span></h1>
+      <div class="hero-bottom">
+        <p>Digital experiences. Beautiful print.<br>One studio connecting the dots.</p>
+        <div class="hero-note">ONE CLEAR JOURNEY<br>FROM IDEA TO OUTCOME.</div>
+      </div>
+    </section>
+
+    <section class="work" id="work" aria-labelledby="work-title">
+      <div class="section-top reveal"><div><span class="eyebrow">01 / SELECTED WORK</span><h2 id="work-title">Made with<br><em>purpose.</em></h2></div><p>Open any chapter to see the actual pages, formats and design thinking behind it.</p></div>
+      <div class="filter-bar"><div class="filters" role="group" aria-label="Filter work"><button class="filter active" data-filter="all" aria-pressed="true">All work</button><button class="filter" data-filter="digital" aria-pressed="false">Digital</button><button class="filter" data-filter="print" aria-pressed="false">Print</button></div></div>
+      <div class="projects" id="project-grid"></div>
+      <noscript><div class="no-js-work"><h3>Digital experiences · Books · Learning materials · Print</h3><p>A visual selection of Madenet work across screens and physical formats.</p><img src="assets/mockup-book.jpg" alt="Illustrated storybook presented as a finished print format"><p>Enable JavaScript to browse the visual galleries, or <a href="mailto:madenet@proton.me">email us about our work</a>.</p></div></noscript>
+      <div class="work-end"><span>On screen. On paper. In people’s hands.</span><a href="#services">See how we can help <span class="arrow-icon" aria-hidden="true"></span></a></div>
+    </section>
+
+    <section class="services" id="services" aria-labelledby="services-title">
+      <div class="section-top reveal"><div><span class="eyebrow">02 / WHAT WE DO</span><h2 id="services-title">One studio.<br><em>Four ways in.</em></h2></div><p>Start with what you need. We connect the right disciplines around it, so the final result feels like one idea.</p></div>
+      <div class="service-list">
+        <details class="reveal" open><summary><span class="number">01</span><h3>UI/UX design</h3><span class="plus" aria-hidden="true">+</span></summary><div class="service-body"><p>Clear journeys. Thoughtful interfaces. We turn complex ideas into digital experiences that feel natural to use.</p><div class="service-tags"><span>User journeys</span><span>Wireframes & prototypes</span><span>Interface design</span></div><button class="text-link" data-service="UI/UX design">Let’s design your experience <span class="arrow-icon" aria-hidden="true"></span></button></div></details>
+        <details class="reveal"><summary><span class="number">02</span><h3>Web development</h3><span class="plus" aria-hidden="true">+</span></summary><div class="service-body"><p>Your brand, made interactive. We build responsive websites with purposeful layouts, intuitive navigation and the functionality your business needs.</p><div class="service-tags"><span>Business websites</span><span>Product catalogues</span><span>Responsive development</span></div><button class="text-link" data-service="Web development">Let’s build your website <span class="arrow-icon" aria-hidden="true"></span></button></div></details>
+        <details class="reveal"><summary><span class="number">03</span><h3>Digital marketing</h3><span class="plus" aria-hidden="true">+</span></summary><div class="service-body"><p>A consistent presence across the places your audience spends time. Campaign creative and digital content that carry your brand’s story.</p><div class="service-tags"><span>Campaign creative</span><span>Social content</span><span>Brand communication</span></div><button class="text-link" data-service="Digital marketing">Let’s shape your next campaign <span class="arrow-icon" aria-hidden="true"></span></button></div></details>
+        <details class="reveal"><summary><span class="number">04</span><h3>Print & creative</h3><span class="plus" aria-hidden="true">+</span></summary><div class="service-body"><p>Ideas you can hold. From illustrated books and learning materials to celebration stationery, we care about how every detail makes it onto the page.</p><div class="service-tags"><span>Book design & illustration</span><span>Event stationery</span><span>Print preparation</span></div><button class="text-link" data-service="Print & creative">Let’s make something tangible <span class="arrow-icon" aria-hidden="true"></span></button></div></details>
+      </div>
+    </section>
+
+    <section class="clients" id="clients" aria-labelledby="clients-title">
+      <div class="section-top reveal"><div><span class="eyebrow">03 / SELECTED COLLABORATIONS</span><h2 id="clients-title">Good work<br><em>has company.</em></h2></div><p>A short roll call of organisations and creative partners Madenet has worked alongside.</p></div>
+      <div class="collaboration-carousel reveal" role="region" aria-label="Selected collaborators in a continuously moving row.">
+        <div class="collaboration-track">
+          <div class="collaboration-set">
+            <div class="collaboration-card"><img class="collaboration-logo" src="assets/comeiin-client-logo.webp" alt="Comeiin Works"></div>
+            <div class="collaboration-card"><img class="collaboration-logo" src="assets/oppoglobe-client-logo.webp" alt="OppoGlobe"></div>
+            <div class="collaboration-card"><img class="collaboration-logo" src="assets/plantago-client-logo.webp" alt="Plantago Lanceolata"></div>
+            <div class="collaboration-card"><img class="collaboration-logo collaboration-wide" src="assets/thusa-client-logo.webp" alt="Thusa Bokamoso Project"></div>
+            <div class="collaboration-card collaboration-wordmark"><strong>Aura n Alphabet</strong></div>
+          </div>
+          <div class="collaboration-set" aria-hidden="true">
+            <div class="collaboration-card"><img class="collaboration-logo" src="assets/comeiin-client-logo.webp" alt=""></div>
+            <div class="collaboration-card"><img class="collaboration-logo" src="assets/oppoglobe-client-logo.webp" alt=""></div>
+            <div class="collaboration-card"><img class="collaboration-logo" src="assets/plantago-client-logo.webp" alt=""></div>
+            <div class="collaboration-card"><img class="collaboration-logo collaboration-wide" src="assets/thusa-client-logo.webp" alt=""></div>
+            <div class="collaboration-card collaboration-wordmark"><strong>Aura n Alphabet</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>UNDERSTAND IT. <i>DESIGN IT.</i> MAKE IT. <svg class="burst-inline" viewBox="0 0 100 100"><use href="#madenet-burst"></use></svg> </span><span>UNDERSTAND IT. <i>DESIGN IT.</i> MAKE IT. <svg class="burst-inline" viewBox="0 0 100 100"><use href="#madenet-burst"></use></svg> </span></div></div>
+
+    <section class="studio" id="studio" aria-labelledby="studio-title">
+      <div class="studio-image reveal"><img src="assets/learning-production-themes.webp" alt="Printed early learning materials produced by Madenet" width="1600" height="1600" loading="lazy"><img class="studio-stamp" src="assets/madenet-circle.webp" alt="" aria-hidden="true"><span class="image-credit">DESIGNED, PRINTED & PHOTOGRAPHED</span></div>
+      <div class="studio-copy reveal"><span class="eyebrow">04 / THE MADENET WAY</span><h2 id="studio-title">One idea.<br>Three ways to <em>move it.</em></h2><p>Every project moves through the same Madenet mindset: make it with care, connect every part, then put it to work.</p><div class="brand-stack">
+        <details class="brand-card" open><summary><span class="brand-number">01</span><strong>Craft</strong><span class="brand-toggle" aria-hidden="true"></span></summary><div class="brand-card-body"><p>We craft clear interfaces, responsive websites, campaign content, illustrated learning materials and print made for real use. Every detail earns its place.</p></div></details>
+        <details class="brand-card"><summary><span class="brand-number">02</span><strong>Connect</strong><span class="brand-toggle" aria-hidden="true"></span></summary><div class="brand-card-body"><p>We connect strategy, design, development, marketing and print so every touchpoint feels like one brand and leads people through one clear journey.</p></div></details>
+        <details class="brand-card"><summary><span class="brand-number">03</span><strong>Conquer</strong><span class="brand-toggle" aria-hidden="true"></span></summary><div class="brand-card-body"><p>We refine and deliver work ready for the real world—helping ideas earn attention, build trust and move the right audience to act.</p></div></details>
+      </div><button class="pill outline magnetic" data-brief>Tell us what you’re imagining <span class="arrow-icon" aria-hidden="true"></span></button></div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title"><span class="eyebrow reveal">05 / LET’S MAKE SOMETHING MATTER</span><button class="contact-heading" data-brief data-cursor="Let’s talk"><h2 id="contact-title">Your next<br><em>big idea.</em></h2><span class="arrow-icon arrow-icon-large" aria-hidden="true"></span></button><div class="contact-bottom"><p>A website, a campaign, a book.<br>It starts with a conversation.</p><div class="contact-channels"><div class="email-channel"><a class="email-link" href="mailto:madenet@proton.me">madenet@proton.me <span class="arrow-icon" aria-hidden="true"></span></a><button class="copy-email" type="button">Copy email</button><span class="sr-only" id="email-status" role="status"></span></div><a class="whatsapp-link" href="https://wa.me/27630502051" target="_blank" rel="noopener" aria-label="Chat with Madenet on WhatsApp at +27 63 050 2051"><span class="whatsapp-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M7.2 25.1 8.5 21A10.5 10.5 0 1 1 12 24.2l-4.8.9Z"/><path d="M12.1 10.7c.3-.7.6-.7 1-.7h.6c.2 0 .4.1.5.5l.9 2.1c.1.3.1.5-.1.8l-.7.9c-.2.2-.1.5.1.8.8 1.4 2 2.5 3.5 3.2.3.2.6.1.8-.1l1-1.2c.2-.3.5-.3.8-.2l2 .9c.3.2.5.3.5.5 0 .2-.2 1.7-1.2 2.5-.9.7-2 1-3.2.7-1.1-.3-2.5-.8-4.3-2.1-3-2.2-4.9-5.4-5-5.7-.1-.3-1.2-2.9.8-4.9Z"/></svg></span><span><small>WHATSAPP</small><strong>+27 63 050 2051</strong></span><span class="arrow-icon" aria-hidden="true"></span></a></div></div></section>
+  </main>
+  <footer><a class="wordmark" href="#" aria-label="Madenet home"><img src="assets/madenet-logo.svg" alt="" width="2000" height="500"></a><span>DESIGN. DIGITAL. PRINT.</span><div><button id="motion-toggle" aria-pressed="false">Pause motion</button><a href="#">Back to top <span class="arrow-icon arrow-icon-up" aria-hidden="true"></span></a></div></footer>
+  <dialog id="project-dialog" aria-labelledby="case-title"><div class="dialog-top"><span class="eyebrow">MADENET / PROJECT NOTES</span><button class="close-button" data-close="project-dialog" aria-label="Close project">Close <span aria-hidden="true">×</span></button></div><div id="case-content"></div></dialog>
+  <dialog id="brief-dialog" aria-labelledby="brief-title"><div class="dialog-top"><span class="eyebrow">LET’S START WITH AN IDEA</span><button class="close-button" data-close="brief-dialog" aria-label="Close project brief">Close <span aria-hidden="true">×</span></button></div><div class="brief-content"><h2 id="brief-title">What are we<br><em>making?</em></h2><form id="brief-form"><fieldset><legend>I’m interested in</legend><div class="brief-options"><label><input type="checkbox" name="service" value="UI/UX design"><span>UI/UX design</span></label><label><input type="checkbox" name="service" value="Web development"><span>Web development</span></label><label><input type="checkbox" name="service" value="Digital marketing"><span>Digital marketing</span></label><label><input type="checkbox" name="service" value="Print & creative"><span>Print & creative</span></label></div></fieldset><label class="field" for="brief-description">Tell us a little about your idea<textarea id="brief-description" name="description" rows="3" maxlength="2500" placeholder="What would you like to create?"></textarea></label><label class="field" for="brief-timing">When do you have in mind? <span>(optional)</span><input id="brief-timing" name="timing" maxlength="150" placeholder="A date, a timeframe, or just exploring"></label><div class="brief-actions"><button class="pill dark" type="submit">Create email draft <span class="arrow-icon" aria-hidden="true"></span></button><button class="pill outline" type="button" id="copy-brief">Copy brief</button></div><p class="form-note">Opens your email app. You review and send the message yourself.</p><p id="brief-status" role="status"></p></form></div></dialog>
+</body>
+</html>
