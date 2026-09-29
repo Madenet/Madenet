@@ -1,27 +1,9 @@
 (() => {
   'use strict';
   const projects = window.MADENET_PROJECTS || [];
-  const newPrintRange = {
-    learning: [
-      ['assets/mockup-numbers-range.png', 'An educational numbers chart from the Madenet print concept range'],
-      ['assets/mockup-docs-range.png', 'A practical lesson-plan page from the Madenet print concept range'],
-      ['assets/mockup-sign-range.png', 'A readable learning-area sign from the Madenet print concept range']
-    ],
-    celebration: [
-      ['assets/mockup-business-range.png', 'Business cards, flyers and stickers presented as a coordinated print range']
-    ]
-  };
-  Object.entries(newPrintRange).forEach(([id, images]) => {
-    const project = projects.find(item => item.id === id);
-    if (!project) return;
-    images.forEach(image => {
-      if (!project.images.some(existing => existing[0] === image[0])) project.images.push(image);
-    });
-  });
   const $ = (s, scope = document) => scope.querySelector(s);
   const $$ = (s, scope = document) => [...scope.querySelectorAll(s)];
   const escape = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const arrowIcon = (direction = '') => `<span class="arrow-icon${direction ? ` arrow-icon-${direction}` : ''}" aria-hidden="true"></span>`;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const fine = matchMedia('(pointer: fine) and (hover: hover)');
   let motionPaused = false;
@@ -29,14 +11,25 @@
   const motionAllowed = () => !reduced.matches && !motionPaused;
   const grid = $('#project-grid');
   const cursor = $('.cursor');
-  let activeProject = 0, activeImage = 0, opener = null, filter = 'all';
-  const projectDialog = $('#project-dialog'), briefDialog = $('#brief-dialog');
+  let opener = null, filter = 'all';
+  const briefDialog = $('#brief-dialog');
+
+  const schoolLogos = $('.school-logo-grid');
+  if (schoolLogos) {
+    const repeatedLogos = schoolLogos.cloneNode(true);
+    repeatedLogos.removeAttribute('aria-label');
+    repeatedLogos.setAttribute('aria-hidden', 'true');
+    $('.school-carousel-track').append(repeatedLogos);
+  }
 
   grid.innerHTML = projects.map((p, i) => `<article class="project project-${p.id} reveal" data-category="${p.category}" style="--project-color:${p.color}">
-    <button class="project-button" data-project="${p.id}" data-cursor="View work" aria-label="Explore ${escape(p.title)}">
-      <div class="cover"><img src="${p.cover}" alt="${escape(p.coverAlt)}" loading="lazy" width="1600" height="1200"><span class="cover-label">${escape(p.label.toUpperCase())}</span><span class="cover-title">${escape(p.line)}</span><span class="open-icon">${arrowIcon()}</span></div>
-      <div class="project-caption"><div><h3>${escape(p.title)}</h3><p>${escape(p.label)}</p></div></div>
-    </button></article>`).join('');
+    <div class="project-preview">
+      <div class="cover">
+        <img src="${p.cover}" alt="${escape(p.coverAlt)}" loading="lazy" width="1600" height="1200">
+        <p class="work-card-label">${escape(p.label)}</p>
+        <div class="work-card-copy"><h3>${escape(p.title)}</h3><p>${escape(p.line)}</p></div>
+      </div>
+    </div></article>`).join('');
 
   const observer = new IntersectionObserver(entries => entries.forEach(entry => {
     if (entry.isIntersecting) { entry.target.classList.remove('pending'); observer.unobserve(entry.target); }
@@ -100,45 +93,6 @@
   });
   $$('[data-close]').forEach(b => b.addEventListener('click', () => closeDialog(document.getElementById(b.dataset.close))));
 
-  function renderCase() {
-    const p = projects[activeProject], next = projects[(activeProject + 1) % projects.length];
-    $('#case-content').innerHTML = `<div class="case-header"><span class="eyebrow">${escape(p.label.toUpperCase())}</span><h2 id="case-title">${escape(p.title)}</h2><p>${escape(p.intro)}</p><div class="case-tags">${p.tags.map(tag => `<span>${escape(tag)}</span>`).join('')}</div></div>
-      <figure class="gallery"><div class="gallery-stage" style="--gallery-color:${p.color}" tabindex="0" aria-label="Work image gallery. Use left and right arrow keys to browse."><img id="gallery-image" src="${p.images[activeImage][0]}" alt="${escape(p.images[activeImage][1])}"></div><figcaption class="gallery-caption"><p id="gallery-caption" aria-live="polite">${escape(p.images[activeImage][1])}</p><div class="gallery-controls"><button id="gallery-prev" aria-label="Previous image">${arrowIcon('left')}</button><span class="gallery-count" id="gallery-count"></span><button id="gallery-next" aria-label="Next image">${arrowIcon('right')}</button></div></figcaption><div class="gallery-thumbs" role="group" aria-label="Choose a work image">${p.images.map((im,i) => `<button class="gallery-thumb" data-image="${i}" aria-pressed="${i===activeImage}" aria-label="Show image ${i+1}: ${escape(im[1])}"><img src="${im[0]}" alt="" loading="lazy"></button>`).join('')}</div></figure>
-      <div class="case-story"><div><h3>The direction</h3><p>${escape(p.brief)}</p></div><div><h3>The design response</h3><p>${escape(p.work)}</p></div><div class="case-detail"><h3>Portfolio note</h3><p>${escape(p.detail)}</p></div></div>
-      <button class="case-next" id="next-project"><div><span>NEXT WORK CHAPTER</span><strong>${escape(next.title)}</strong></div>${arrowIcon()}</button>`;
-    $('#gallery-prev').addEventListener('click', () => setImage(activeImage - 1));
-    $('#gallery-next').addEventListener('click', () => setImage(activeImage + 1));
-    $$('.gallery-thumb').forEach(button => button.addEventListener('click', () => setImage(Number(button.dataset.image))));
-    const stage = $('.gallery-stage');
-    stage.addEventListener('keydown', e => { if (e.key==='ArrowRight'||e.key==='ArrowLeft') {e.preventDefault();setImage(activeImage+(e.key==='ArrowRight'?1:-1));} });
-    let touchX = null;
-    stage.addEventListener('touchstart', e => { touchX=e.touches[0].clientX; }, {passive:true});
-    stage.addEventListener('touchend', e => { if(touchX!==null){const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>45)setImage(activeImage+(dx<0?1:-1));}touchX=null; }, {passive:true});
-    $('#next-project').addEventListener('click', () => {activeProject=(activeProject+1)%projects.length;activeImage=0;renderCase();projectDialog.scrollTop=0;$('.close-button',projectDialog).focus({preventScroll:true});});
-    updateGalleryControls();
-  }
-  function updateGalleryControls() {
-    const count=projects[activeProject].images.length;
-    $('#gallery-prev').disabled=activeImage===0;
-    $('#gallery-next').disabled=activeImage===count-1;
-    $('#gallery-count').textContent=`${activeImage+1} / ${count}`;
-    $$('.gallery-thumb').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===activeImage)));
-  }
-  function setImage(index) {
-    const p=projects[activeProject];
-    if(index<0||index>=p.images.length||index===activeImage)return;
-    activeImage=index;
-    const img=$('#gallery-image');
-    img.src=p.images[index][0];img.alt=p.images[index][1];
-    $('#gallery-caption').textContent=p.images[index][1];
-    if(motionAllowed())img.animate([{opacity:.25},{opacity:1}],{duration:350});
-    updateGalleryControls();
-  }
-  $$('[data-project]').forEach(button=>button.addEventListener('click',()=>{
-    activeProject=projects.findIndex(p=>p.id===button.dataset.project);
-    if(activeProject<0)return;
-    activeImage=0;renderCase();openDialog(projectDialog,button);projectDialog.scrollTop=0;
-  }));
 
   $$('.client-folder').forEach(folder => folder.addEventListener('toggle', () => {
     const summary = $('summary', folder);
@@ -201,11 +155,6 @@
   },{passive:true});
   document.addEventListener('pointerleave',()=>cursor.style.opacity='0');
   window.addEventListener('blur',()=>cursor.style.opacity='0');
-  $$('.project-button').forEach(button=>{
-    const cover=$('.cover',button);
-    button.addEventListener('pointermove',e=>{if(!motionAllowed()||!fine.matches||e.pointerType==='touch')return;const r=cover.getBoundingClientRect();cover.style.setProperty('--ry',`${((e.clientX-r.left)/r.width-.5)*5}deg`);cover.style.setProperty('--rx',`${-((e.clientY-r.top)/r.height-.5)*5}deg`);},{passive:true});
-    button.addEventListener('pointerleave',()=>{cover.style.setProperty('--rx','0deg');cover.style.setProperty('--ry','0deg');});
-  });
   $$('.magnetic').forEach(el=>{
     el.addEventListener('pointermove',e=>{if(!motionAllowed()||!fine.matches||e.pointerType==='touch')return;const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.12}px,${(e.clientY-r.top-r.height/2)*.12}px)`;},{passive:true});
     el.addEventListener('pointerleave',()=>el.style.removeProperty('transform'));

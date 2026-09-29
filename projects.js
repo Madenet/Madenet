@@ -2,7 +2,7 @@ window.MADENET_PROJECTS = [
   {
     id: 'comeiin', title: 'Product interfaces', line: 'Complex information, made easier.',
     category: 'digital', label: 'UI/UX · Web development', color: '#b9d6e9',
-    cover: 'assets/comeiin-page-home.webp', coverAlt: 'A polished product catalogue interface shown on a website homepage',
+    cover: 'assets/preview-product-interfaces.jpg', coverAlt: 'Conceptual product interface with sculptural ivory, lilac and orange tiles',
     intro: 'Interface systems that help people browse, compare and take the next step with confidence.',
     brief: 'Bring structure to information-heavy digital products without making the experience feel heavy.',
     work: 'Clear navigation, responsive page systems and purposeful interactions designed around the way people actually move through a product.',
@@ -17,7 +17,7 @@ window.MADENET_PROJECTS = [
   {
     id: 'oppoglobe', title: 'Connected platforms', line: 'Many journeys. One clear system.',
     category: 'digital', label: 'Product design · Platform UI', color: '#cfe8dd',
-    cover: 'assets/oppoglobe-page-dashboard.webp', coverAlt: 'A modular digital platform dashboard with multiple content areas',
+    cover: 'assets/preview-connected-platforms.jpg', coverAlt: 'Conceptual connected platform with floating panels and orange connections',
     intro: 'Flexible product experiences that bring different services and audiences into one visual language.',
     brief: 'Make a broad digital ecosystem feel coherent, welcoming and easy to navigate across screen sizes.',
     work: 'Modular layouts, reusable interface patterns and guided journeys that can grow as a platform evolves.',
@@ -32,7 +32,7 @@ window.MADENET_PROJECTS = [
   {
     id: 'aura', title: 'Storybooks & editorial', line: 'Words, pictures and pages that belong together.',
     category: 'print', label: 'Book design · Illustration · Print', color: '#f3c998',
-    cover: 'assets/mockup-book.jpg', coverAlt: 'An illustrated children’s book presented as a finished printed object',
+    cover: 'assets/preview-storybooks.jpg', coverAlt: 'Conceptual bound books with orange, lilac and charcoal illustrations on textured ivory pages',
     intro: 'Stories shaped from early artwork into readable, expressive and carefully finished books.',
     brief: 'Create a strong connection between the idea, the illustration, the page and the final object in a reader’s hands.',
     work: 'Cover direction, page systems, illustration placement, print preparation and a close eye on how every spread moves into the next.',
@@ -48,7 +48,7 @@ window.MADENET_PROJECTS = [
   {
     id: 'plantago', title: 'Service-led websites', line: 'Expertise, clearly expressed.',
     category: 'digital', label: 'Web design · Development', color: '#dae7a2',
-    cover: 'assets/plantago-page-home.webp', coverAlt: 'A professional service website with a clear editorial layout',
+    cover: 'assets/preview-service-websites.jpg', coverAlt: 'Conceptual responsive website preview in ivory, charcoal, lilac and orange',
     intro: 'Business websites that turn specialist knowledge into a clear and credible digital presence.',
     brief: 'Help visitors understand a broad service offering quickly, then guide them toward the information that matters to them.',
     work: 'Content hierarchy, page architecture, responsive design and development brought together as one considered experience.',
@@ -62,7 +62,7 @@ window.MADENET_PROJECTS = [
   {
     id: 'learning', title: 'Learning materials', line: 'Made to explain. Made to be used.',
     category: 'print', label: 'Madenet original · Educational print', color: '#c0b6f5',
-    cover: 'assets/mockup-chart.jpg', coverAlt: 'A colourful large-format learning chart presented as a print mockup',
+    cover: 'assets/preview-learning-materials.jpg', coverAlt: 'Coordinated learning chart, shape flashcards and tabbed materials in ivory, orange and lilac',
     intro: 'Madenet-created resources that turn learning themes into useful, welcoming material for everyday spaces.',
     brief: 'Make information legible from a distance, inviting up close and practical for repeated use.',
     work: 'Visual systems for charts, dividers, multilingual resources and classroom material across several print formats.',
@@ -78,7 +78,7 @@ window.MADENET_PROJECTS = [
   {
     id: 'celebration', title: 'Print & physical formats', line: 'An idea can live on almost anything.',
     category: 'print', label: 'Print design · Signage · Stationery', color: '#eac4d3',
-    cover: 'assets/mockup-metal.jpg', coverAlt: 'Madenet typography applied to a printed metal sign',
+    cover: 'assets/preview-print-formats.jpg', coverAlt: 'Coordinated metal sign, business cards, leaflet and stickers with geometric print artwork',
     intro: 'A flexible print practice spanning personal stationery, signage and pieces designed for a particular moment or place.',
     brief: 'Carry the same design care from a small printed detail to a large and lasting surface.',
     work: 'Format exploration, typography, image treatment and production-ready artwork suited to the material and its setting.',
